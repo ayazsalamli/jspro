@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Movie DB</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=cyrillic-ext"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header_search">
+            <form action="#">
+                <input type="text" placeholder="Axtar">
+            </form>
+        </div>
+        <div class="header_logo">
+            <img src="icons/logo.png" alt="logo" width="100px">
+        </div>
+    </header>
+    <main class="promo">
+        <div class="promo_menu">
+            <nav class="promo_menu-list">
+                <ul>
+                    <li><a class="promo_menu-item " href="index.html">Kinolar</a></li>
+                    <li><a class="promo_menu-item " href="index2.html">Seriallar</a></li>
+                    <li><a class="promo_menu-item promo_menu-item_active" href="index3.html">Cizgi filmi</a></li>
+                    <li><a class="promo_menu-item" href="index4.html">Kliplər</a></li>
+                    <li><a class="promo_menu-item" href="index5.html">Treylerlər</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="promo_content">
+            <div class="promo_bg">
+                <div class="promo_genre">Komediya</div>
+                <div class="promo_title">Masha And The Bear</div>
+                <div class="promo_descr">Bear and Masha</div>
+                <div class="promo_ratings">
+                    <span>IMDb: 8.0</span>
+                    <span>Netflix: 7.7</span>
+                </div>
+            </div>
+            <div class="promo_interactive">
+                <div>
+                    <div class="promo_interactive-title">Baxilmış cizgi film</div>
+                    <ul class="promo_interactive-list">
+                        <li class="promo_interactive-item">Masha And Bear
+                            <div class="delete"></div>
+                        </li>
+                        <li class="promo_interactive-item">Cocomelon
+                            <div class="delete"></div>
+                        </li>
+                        <li class="promo_interactive-item">Vikings
+                            <div class="delete"></div>
+                        </li>
+                        <li class="promo_interactive-item">BOOBA
+                            <div class="delete"></div>
+                        </li>
+                        <li class="promo_interactive-item">Three cats
+                            <div class="delete"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <form class="add">
+                        <div class="promo_interactive-title">Yeni cizgi film əlavə edin</div>
+                        <span>Cizgi Filmin adını daxil edin</span>
+                        <input class="adding_input" type="text" placeholder="Artıq baxılıb...?">
+                        <span>Sevimli edək?</span>
+                        <input type="checkbox">
+                        <span class="yes">Bəli!</span>
+                        <button>Təsdiq et</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="promo_adv">
+            <div class="promo_adv-title">Sponsor reklamları</div>
+            <img src="img/2.png" alt="some picture">
+            <img src="img/3.png" alt="some picture">
+            <img src="img/4.png" alt="some picture">
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('.add');
+            const input = document.querySelector('.adding_input');
+            const checkbox = document.querySelector('.add input[type="checkbox"]');
+            const moviesList = document.querySelector('.promo_interactive-list');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const movieName = input.value.trim();
+
+              
+
+                const isChecked = checkbox.checked;
+                const newMovie = {
+                    name: movieName,
+                    watched: isChecked
+                };
+
+                addMovie(newMovie);
+                form.reset();
+            });
+
+            function addMovie(movie) {
+                const listItem = document.createElement('li');
+                listItem.classList.add('promo_interactive-item');
+                listItem.textContent = movie.name;
+
+                if (movie.watched) {
+                    listItem.classList.add('watched');
+                }
+
+                const deleteButton = document.createElement('div');
+                deleteButton.classList.add('delete');
+                deleteButton.addEventListener('click', function () {
+                    listItem.remove();
+                });
+
+                listItem.appendChild(deleteButton);
+                moviesList.appendChild(listItem);
+            }
+        });
+        
+    </script>
+
+    <script src="script3.js"></script>
+</body>
+
+</html>
